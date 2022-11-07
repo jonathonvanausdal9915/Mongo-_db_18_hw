@@ -11,3 +11,4 @@ const mongoose = require('mongoose');
 
 // Export connection
 module.exports = mongoose.connection;
+//Connection to database

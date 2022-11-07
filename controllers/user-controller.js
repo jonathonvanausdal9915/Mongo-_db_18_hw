@@ -30,15 +30,15 @@ module.exports = {
       });
   },
 
-  // Delete a course
+  // Delete a user
   deleteUser(req, res) {
-    User.findOneAndDelete({ _id: req.params.courseId })
+    User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
         !user
-          ? res.status(404).json({ message: 'No course with that ID' })
-          : Student.deleteMany({ _id: { $in: course.students } })
+          ? res.status(404).json({ message: 'No User with that ID' })
+          : console.log("User Deleted")
       )
-      .then(() => res.json({ message: 'Course and students deleted!' }))
+      .then(() => res.json({ message: 'User successfully deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
   // Update a course
@@ -56,3 +56,23 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 };
+// [
+// // 	{
+// // 		"_id": "6361ad73babe3d014a6e1786",
+// // 		"username": "Jonathon",
+// // 		"email": "jonathon@vanausdal.net",
+// // 		"thoughts": [],
+// // 		"friends": [],
+// // 		"__v": 0,
+// // 		"friendCount": 0
+// // 	},
+// // 	{
+// // 		"_id": "636850b4ab78ce4cf4719b85",
+// // 		"username": "Dad",
+// // 		"email": "dad@dad.net",
+// // 		"thoughts": [],
+// // 		"friends": [],
+// // 		"__v": 0,
+// // 		"friendCount": 0
+// // 	}
+// // ]
