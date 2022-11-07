@@ -11,10 +11,7 @@ const {
 router.route('/').get(getAllThought).post(createThought,);
 
 // /api/thoughts/:thoughtid
-router
-  .route('/:thoughtid')
-  .get(getSingleThought)
-//   .put(updateCourse)
-  .delete(deleteThought);
+router.route('/:thoughtId').get(getSingleThought).delete(deleteThought);
+ 
 
 module.exports = router;

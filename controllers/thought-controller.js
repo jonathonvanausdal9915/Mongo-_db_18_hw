@@ -19,7 +19,7 @@ module.exports = {
           
       //get one thought
       getSingleThought(req, res) {
-        Thought.findOne({ _id: req.params.id })
+        Thought.findOne({ _id: req.params.thoughtId })
           .select('-__v')
           .lean()
           .then(async (thought) =>
