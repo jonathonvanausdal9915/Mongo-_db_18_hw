@@ -42,14 +42,14 @@ module.exports = {
       },
       // Delete thought
       deleteThought({ params }, res) {
-        Thought.findOneAndDelete({ _id: params.id })
-          .then(dbThoughtData => {
-            if (!dbThoughtData) {
+        Thought.findOneAndDelete({ _id: params.thoughtId })
+          .then(ThoughtData => {
+            if (!ThoughtData) {
               res.status(404).json({ message: 'No thoughts found with that id!' });
               return;
             }
             return User.findOneAndUpdate(
-              { _id: parmas.userId },
+              { _id: parmas.thoughtId },
               { $pull: { thoughts: params.Id } },
               { new: true }
             )
@@ -64,40 +64,4 @@ module.exports = {
           .catch(err => res.json(err));
       },
 }
-    
-    //   // Add an assignment to a student
-    //   addAssignment(req, res) {
-    //     console.log('You are adding an assignment');
-    //     console.log(req.body);
-    //     Student.findOneAndUpdate(
-    //       { _id: req.params.studentId },
-    //       { $addToSet: { assignments: req.body } },
-    //       { runValidators: true, new: true }
-    //     )
-    //       .then((student) =>
-    //         !student
-    //           ? res
-    //               .status(404)
-    //               .json({ message: 'No student found with that ID :(' })
-    //           : res.json(student)
-    //       )
-    //       .catch((err) => res.status(500).json(err));
-    //   },
-    //   // Remove assignment from a student
-    //   removeAssignment(req, res) {
-    //     Student.findOneAndUpdate(
-    //       { _id: req.params.studentId },
-    //       { $pull: { assignment: { assignmentId: req.params.assignmentId } } },
-    //       { runValidators: true, new: true }
-    //     )
-    //       .then((student) =>
-    //         !student
-    //           ? res
-    //               .status(404)
-    //               .json({ message: 'No student found with that ID :(' })
-    //           : res.json(student)
-    //       )
-    //       .catch((err) => res.status(500).json(err));
-    //   },
-    // };
     
