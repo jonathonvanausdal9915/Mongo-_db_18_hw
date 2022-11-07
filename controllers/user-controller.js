@@ -7,27 +7,29 @@ module.exports = {
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
+
+  // get a single user
+  getSingleUser(req, res) {
+    User.findOne({ _id: req.params.userId })
+      .select('-__v')
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No user with that ID' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+
+  // Create a user
+  createUser(req, res) {
+    User.create(req.body)
+      .then((user) => res.json(user))
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).json(err);
+      });
+  }
 }
-//   // Get a course
-//   getSingleCourse(req, res) {
-//     Course.findOne({ _id: req.params.courseId })
-//       .select('-__v')
-//       .then((course) =>
-//         !course
-//           ? res.status(404).json({ message: 'No course with that ID' })
-//           : res.json(course)
-//       )
-//       .catch((err) => res.status(500).json(err));
-//   },
-//   // Create a course
-//   createCourse(req, res) {
-//     Course.create(req.body)
-//       .then((course) => res.json(course))
-//       .catch((err) => {
-//         console.log(err);
-//         return res.status(500).json(err);
-//       });
-//   },
 //   // Delete a course
 //   deleteCourse(req, res) {
 //     Course.findOneAndDelete({ _id: req.params.courseId })
